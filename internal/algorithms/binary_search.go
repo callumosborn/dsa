@@ -1,4 +1,4 @@
-package main
+package algorithms
 
 // search performs binary search on a sorted integer slice.
 //
