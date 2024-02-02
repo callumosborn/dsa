@@ -6,19 +6,19 @@ func TestIsEmpty(t *testing.T) {
 	var stack Stack
 
 	if stack.isEmpty() == false {
-		t.Error("1")
+		t.Error("Stack should be empty, but it is not.")
 	}
 
 	stack.push(1)
 
 	if stack.isEmpty() == true {
-		t.Error("2")
+		t.Error("Stack should not be empty, but is is.")
 	}
 
 	stack.pop()
 
 	if stack.isEmpty() == false {
-		t.Error("3")
+		t.Error("Stack should be empty, but it is not.")
 	}
 }
 
@@ -26,8 +26,10 @@ func TestPush(t *testing.T) {
 	var stack Stack
 	stack.push(1)
 
-	if len(stack) != 1 {
-		t.Errorf("1")
+	expectedLength := 1
+
+	if len(stack) != expectedLength {
+		t.Errorf("Expected stack length %d, but got %d", expectedLength, len(stack))
 	}
 
 	stack.push(2)
@@ -35,8 +37,10 @@ func TestPush(t *testing.T) {
 	stack.push(4)
 	stack.push(5)
 
-	if len(stack) != 5 {
-		t.Error("2")
+	expectedLength = 5
+
+	if len(stack) != expectedLength {
+		t.Errorf("Expected stack length %d, but got %d", expectedLength, len(stack))
 	}
 }
 
@@ -46,7 +50,7 @@ func TestPop(t *testing.T) {
 	val := stack.pop()
 
 	if val != nil {
-		t.Error("1")
+		t.Errorf("Expected nil value, but got %v", val)
 	}
 
 	stack.push(1)
@@ -55,14 +59,12 @@ func TestPop(t *testing.T) {
 
 	val1 := stack.pop()
 
-	val2, ok := val1.(int)
+	val2, _ := val1.(int)
 
-	if !ok {
-		t.Error("1")
-	}
+	expectedVal := 3
 
-	if val2 != 3 {
-		t.Error("1")
+	if val2 != expectedVal {
+		t.Errorf("Expected val to be %d, but got %d", expectedVal, val2)
 	}
 
 	stack.pop()
@@ -71,6 +73,6 @@ func TestPop(t *testing.T) {
 	val = stack.pop()
 
 	if val != nil {
-		t.Error("4")
+		t.Errorf("Expected val to be nil, but got %d", val)
 	}
 }
