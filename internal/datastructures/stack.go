@@ -21,3 +21,30 @@ func (s *Stack) pop() any {
 
 	return val[0]
 }
+
+func (s *Stack) Iterator() Interator {
+	return &StackIterator{
+		index: len(*s) - 1,
+		stack: *s,
+	}
+}
+
+type StackIterator struct {
+	index int
+	stack Stack
+}
+
+func (si *StackIterator) HasNext() bool {
+	return si.index >= 0
+}
+
+func (si *StackIterator) GetNext() any {
+	if !si.HasNext() {
+		return nil
+	}
+
+	val := si.stack[si.index]
+	si.index--
+
+	return val
+}

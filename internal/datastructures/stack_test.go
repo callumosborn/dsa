@@ -1,6 +1,8 @@
 package datastructures
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestIsEmpty(t *testing.T) {
 	var stack Stack
@@ -74,5 +76,35 @@ func TestPop(t *testing.T) {
 
 	if val != nil {
 		t.Errorf("Expected val to be nil, but got %d", val)
+	}
+}
+
+func TestIterator(t *testing.T) {
+	var stack Stack
+
+	iterator := stack.Iterator()
+
+	if iterator.HasNext() {
+		t.Errorf("Expected HasNext to return false, but got true")
+	}
+
+	if iterator.GetNext() != nil {
+		t.Errorf("Expected GetNext to return nil, but got a value")
+	}
+
+	expectedVal := 5
+
+	stack.push(expectedVal)
+
+	iterator = stack.Iterator()
+
+	if !iterator.HasNext() {
+		t.Errorf("Expected HasNext to return true, but got false")
+	}
+
+	val := iterator.GetNext().(int)
+
+	if val != expectedVal {
+		t.Errorf("Expected GetNext to return %d, but got %d", expectedVal, val)
 	}
 }
