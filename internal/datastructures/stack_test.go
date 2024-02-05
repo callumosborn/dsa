@@ -94,6 +94,8 @@ func TestIterator(t *testing.T) {
 
 	expectedVal := 5
 
+	stack.push(1)
+	stack.push(2)
 	stack.push(expectedVal)
 
 	iterator = stack.Iterator()

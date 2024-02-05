@@ -21,3 +21,30 @@ func (q *Queue) dequeue() any {
 
 	return val
 }
+
+func (q *Queue) Iterator() Interator {
+	return &QueueIterator{
+		queue: *q,
+	}
+}
+
+type QueueIterator struct {
+	index int
+	queue Queue
+}
+
+func (qi *QueueIterator) HasNext() bool {
+	return qi.index < len(qi.queue)
+}
+
+func (qi *QueueIterator) GetNext() any {
+	if !qi.HasNext() {
+		return nil
+	}
+
+	val := qi.queue[qi.index]
+
+	qi.index++
+
+	return val
+}

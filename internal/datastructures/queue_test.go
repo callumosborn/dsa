@@ -66,3 +66,35 @@ func TestDequeue(t *testing.T) {
 		t.Errorf("Expected stack length %d, but got %d", expectedLength, len(queue))
 	}
 }
+
+func TestQueueIterator(t *testing.T) {
+	var queue Queue
+
+	iterator := queue.Iterator()
+
+	if iterator.HasNext() {
+		t.Errorf("Expected HasNext to return false, but got true")
+	}
+
+	if iterator.GetNext() != nil {
+		t.Errorf("Expected GetNext to return nil, but got a value")
+	}
+
+	expectedVal := 5
+
+	queue.enqueue(expectedVal)
+	queue.enqueue(1)
+	queue.enqueue(2)
+
+	iterator = queue.Iterator()
+
+	if !iterator.HasNext() {
+		t.Errorf("Expected HasNext to return true, but got false")
+	}
+
+	val := iterator.GetNext().(int)
+
+	if val != expectedVal {
+		t.Errorf("Expected GetNext to return %d, but got %d", expectedVal, val)
+	}
+}
