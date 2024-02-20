@@ -1,18 +1,5 @@
 package algorithms
 
-// search performs binary search on a sorted integer slice.
-//
-// It returns the index of the target element if found, otherwise returns -1.
-//
-// The function includes a check for integer overflow during the mid calculation
-// to ensure the correctness and safety of the binary search algorithm.
-//
-// Parameters:
-//   - A: A sorted integer slice to search.
-//   - target: The target integer to search for in the slice.
-//
-// Returns:
-//   - int: The index of the target element if found, otherwise -1.
 func search(A []int, target int) int {
 	lo := 0
 	hi := len(A) - 1
