@@ -1,5 +1,7 @@
 package algorithms
 
+// search performs binary search on a sorted array A and returns the index of the target element.
+// If the target element is not found, it returns -1.
 func search(A []int, target int) int {
 	lo := 0
 	hi := len(A) - 1
