@@ -2,7 +2,7 @@ package sort
 
 type InsertionSort struct{}
 
-func (s *InsertionSort) sort(A *[]int) {
+func (s InsertionSort) sort(A *[]int) {
 	n := len(*A)
 
 	for i := 1; i < n; i++ {
