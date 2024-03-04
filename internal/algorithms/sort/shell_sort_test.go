@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestSelectionSort(t *testing.T) {
+func TestShellSort(t *testing.T) {
 	tests := []struct {
 		name     string
 		A        []int
@@ -18,8 +18,8 @@ func TestSelectionSort(t *testing.T) {
 		},
 		{
 			name:     "Random Order",
-			A:        []int{3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5},
-			expected: []int{1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9},
+			A:        []int{5, 1, 4, 2, 3},
+			expected: []int{1, 2, 3, 4, 5},
 		},
 		{
 			name:     "Decreasing Order",
@@ -33,7 +33,7 @@ func TestSelectionSort(t *testing.T) {
 		},
 	}
 
-	s := SelectionSort{}
+	s := ShellSort{}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
