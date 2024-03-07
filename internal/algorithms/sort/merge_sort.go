@@ -2,6 +2,7 @@ package sort
 
 type MergeSort struct{}
 
+// Recursive, Top-Down Approach
 func (s MergeSort) sort(A *[]int) {
 	aux := make([]int, len(*A))
 
