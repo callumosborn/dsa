@@ -5,7 +5,7 @@ type QuickSort struct{}
 func (s QuickSort) sort(A *[]int) {
 	var qsort func(lo, hi int)
 
-	var partition = func(A *[]int, lo int, hi int, pivot int) int {
+	var partition = func(lo, hi, pivot int) int {
 		if lo == hi {
 			return lo
 		}
@@ -42,11 +42,11 @@ func (s QuickSort) sort(A *[]int) {
 			return
 		}
 
-		pivot := lo
-		location := partition(A, lo, hi, pivot)
+		pivot_idx := lo
+		spivot_idx := partition(lo, hi, pivot_idx)
 
-		qsort(lo, location-1)
-		qsort(location+1, hi)
+		qsort(lo, spivot_idx-1)
+		qsort(spivot_idx+1, hi)
 	}
 
 	qsort(0, len(*A)-1)
