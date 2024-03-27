@@ -3,25 +3,25 @@ package sort
 type QuickSort struct{}
 
 func (s QuickSort) sort(A *[]int) {
-	var qsort func(lo, hi int)
+	var qsort func(start, end int)
 
-	var partition = func(lo, hi, pivot int) int {
-		if lo == hi {
-			return lo
+	var partition = func(start, end, pivot int) int {
+		if start == end {
+			return start
 		}
 
-		swap(A, pivot, lo)
+		swap(A, pivot, start)
 
-		i := lo
-		j := hi
+		i := start
+		j := end
 
 		for {
 
-			for i < hi && (*A)[lo] >= (*A)[i] {
+			for i < end && (*A)[start] >= (*A)[i] {
 				i++
 			}
 
-			for j > lo && (*A)[lo] <= (*A)[j] {
+			for j > start && (*A)[start] <= (*A)[j] {
 				j--
 			}
 
@@ -32,21 +32,21 @@ func (s QuickSort) sort(A *[]int) {
 			swap(A, i, j)
 		}
 
-		swap(A, lo, j)
+		swap(A, start, j)
 
 		return j
 	}
 
-	qsort = func(lo, hi int) {
-		if hi <= lo {
+	qsort = func(start, end int) {
+		if end <= start {
 			return
 		}
 
-		pivot_idx := lo
-		spivot_idx := partition(lo, hi, pivot_idx)
+		pivot := start
+		spivot := partition(start, end, pivot)
 
-		qsort(lo, spivot_idx-1)
-		qsort(spivot_idx+1, hi)
+		qsort(start, spivot-1)
+		qsort(spivot+1, end)
 	}
 
 	qsort(0, len(*A)-1)
