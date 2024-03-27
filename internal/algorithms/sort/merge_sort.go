@@ -7,22 +7,22 @@ func (s MergeSort) sort(A *[]int) {
 	aux := make([]int, len(*A))
 
 	var (
-		merge func(lo int, mid int, hi int)
-		rsort func(lo int, hi int)
+		merge func(start, mid, end int)
+		rsort func(start, end int)
 	)
 
-	merge = func(lo int, mid int, hi int) {
-		copy(aux[lo:hi+1], (*A)[lo:hi+1])
+	merge = func(start, mid, end int) {
+		copy(aux[start:end+1], (*A)[start:end+1])
 
-		left := lo
+		left := start
 		right := mid + 1
 
-		for i := lo; i < hi+1; i++ {
+		for i := start; i < end+1; i++ {
 
 			if left > mid {
 				(*A)[i] = aux[right]
 				right += 1
-			} else if right > hi {
+			} else if right > end {
 				(*A)[i] = aux[left]
 				left += 1
 			} else if aux[right] < aux[left] {
@@ -35,17 +35,17 @@ func (s MergeSort) sort(A *[]int) {
 		}
 	}
 
-	rsort = func(lo int, hi int) {
-		if hi <= lo {
+	rsort = func(start, end int) {
+		if end == start {
 			return
 		}
 
-		mid := lo + (hi-lo)/2
+		mid := start + (end-start)/2
 
-		rsort(lo, mid)
-		rsort(mid+1, hi)
+		rsort(start, mid)
+		rsort(mid+1, end)
 
-		merge(lo, mid, hi)
+		merge(start, mid, end)
 	}
 
 	rsort(0, len(*A)-1)
