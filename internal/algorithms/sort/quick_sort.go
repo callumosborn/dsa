@@ -12,29 +12,29 @@ func (s QuickSort) sort(A *[]int) {
 
 		swap(A, pivot, start)
 
-		i := start
-		j := end
+		left := start
+		right := end
 
 		for {
 
-			for i < end && (*A)[start] >= (*A)[i] {
-				i++
+			for left < end && (*A)[start] >= (*A)[left] {
+				left++
 			}
 
-			for j > start && (*A)[start] <= (*A)[j] {
-				j--
+			for right > start && (*A)[start] <= (*A)[right] {
+				right--
 			}
 
-			if i >= j {
+			if left >= right {
 				break
 			}
 
-			swap(A, i, j)
+			swap(A, left, right)
 		}
 
-		swap(A, start, j)
+		swap(A, start, right)
 
-		return j
+		return right
 	}
 
 	qsort = func(start, end int) {
